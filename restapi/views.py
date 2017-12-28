@@ -4,7 +4,7 @@ from restapi.serializers import CreditRequestsSerializer, CustomerProfileSeriali
 from rest_framework import generics
 from rest_framework import permissions
 
-class HasGroupPermission(permissions.BasePermission):
+class GroupPermission(permissions.BasePermission):
     """
     Ensure user is in required groups.
     """
@@ -27,7 +27,7 @@ class HasGroupPermission(permissions.BasePermission):
 
 
 class CustomerProfileList(generics.ListCreateAPIView):
-    permission_classes = [HasGroupPermission]
+    permission_classes = [GroupPermission]
     required_groups = {
         'GET': ['Admins', 'Partners', 'CreditOrgs'],
         'POST': ['Admins'],
@@ -55,7 +55,7 @@ class CustomerProfileList(generics.ListCreateAPIView):
 
 
 class CustomerProfileDetail(generics.RetrieveAPIView):
-    permission_classes = [HasGroupPermission]
+    permission_classes = [GroupPermission]
     required_groups = {
         'GET': ['Admins', 'Partners', 'CreditOrgs']
     }
@@ -63,8 +63,8 @@ class CustomerProfileDetail(generics.RetrieveAPIView):
     serializer_class = CustomerProfileSerializer
 
 
-class SendReuqestToCredit(generics.CreateAPIView):
-    permission_classes = [HasGroupPermission]
+class ReuqestToCreditSending(generics.CreateAPIView):
+    permission_classes = [GroupPermission]
     required_groups = {
         'POST': ['Admins'],
         'GET': ['Admins']
@@ -74,7 +74,7 @@ class SendReuqestToCredit(generics.CreateAPIView):
 
 
 class CreditRequestsList(generics.ListAPIView):
-    permission_classes = [HasGroupPermission]
+    permission_classes = [GroupPermission]
     required_groups = {
         'GET': ['Admins', 'CreditOrgs']
     }
@@ -95,7 +95,7 @@ class CreditRequestsList(generics.ListAPIView):
 
 
 class CreditRequestsDetail(generics.RetrieveAPIView):
-    permission_classes = [HasGroupPermission]
+    permission_classes = [GroupPermission]
     required_groups = {
         'GET': ['Admins', 'CreditOrgs']
     }

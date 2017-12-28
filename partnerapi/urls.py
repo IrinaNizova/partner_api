@@ -24,6 +24,6 @@ urlpatterns = [
     url(r'^credit-request/(?P<pk>[0-9]+)/$', views.CreditRequestsDetail.as_view()),
     url(r'^customer-profiles/$', views.CustomerProfileList.as_view()),
     url(r'^customer-profile/(?P<pk>[0-9]+)/$', views.CustomerProfileDetail.as_view()),
-    url(r'^send-request/$', views.SendReuqestToCredit.as_view()),
+    url(r'^send-request/$', views.ReuqestToCreditSending.as_view()),
     url(r'^accounts/login/$', auth_views.login)
 ]
